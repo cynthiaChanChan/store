@@ -1,4 +1,4 @@
-import { ActionTypes } from "./Types";
+import { ActionTypes } from "./types";
 export const ShopReducer = (storeData, action) => {
     switch (action.type) {
         case ActionTypes.DATA_LOAD:
