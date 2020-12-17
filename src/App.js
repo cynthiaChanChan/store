@@ -7,7 +7,7 @@ import {
     Switch,
     Redirect,
 } from "react-router-dom";
-import ShopConnector from "./pages/ShopConnector/ShopConnector";
+import { ShopConnector } from "./shop";
 
 function App() {
     return (

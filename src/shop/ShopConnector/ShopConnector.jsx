@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadData } from "../../redux/actions";
+import { loadData } from "../../redux/actions/shop";
 import { DataTypes } from "../../redux/types";
-import { Shop } from "../../components";
+import { Shop } from "../";
 
 const filterProducts = (products = [], category) =>
     !category || category === "All"

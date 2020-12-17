@@ -1,6 +1,5 @@
 import React from "react";
-import { CategoryNavigation } from "../";
-import { ProductList } from "../";
+import { CategoryNavigation, ProductList } from "../";
 
 const Shop = ({ categories, products }) => {
     return (
