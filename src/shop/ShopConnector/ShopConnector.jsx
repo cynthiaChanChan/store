@@ -38,7 +38,7 @@ const ShopConnector = ({ products, categories, loadData }) => {
     );
 };
 
-const mapStateToProps = (dataStore) => ({ ...dataStore });
+const mapStateToProps = (state) => ({ ...state.shop });
 const mapDispatchToProps = { loadData };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopConnector);

@@ -1,13 +1,15 @@
 import { ActionTypes } from "../types";
-const ShopReducer = (storeData, action) => {
+
+const INITIAL_STATE = {};
+const ShopReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ActionTypes.DATA_LOAD:
             return {
-                ...storeData,
+                ...state,
                 [action.payload.dataType]: action.payload.data,
             };
         default:
-            return storeData || {};
+            return state;
     }
 };
 
