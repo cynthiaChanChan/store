@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import { loadData } from "../../redux/actions/shop";
 import { DataTypes } from "../../redux/types";
 import { Shop } from "../";
+import {
+    addToCart,
+    updateCartQuantity,
+    removeFromCart,
+    clearCart,
+} from "../../redux/actions/cart";
 
 const filterProducts = (products = [], category) =>
     !category || category === "All"
@@ -12,18 +18,18 @@ const filterProducts = (products = [], category) =>
               (p) => p.category.toLowerCase() === category.toLowerCase()
           );
 
-const ShopConnector = ({ products, categories, loadData }) => {
+const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
     useEffect(() => {
         loadData(DataTypes.CATEGORIES);
         loadData(DataTypes.PRODUCTS);
     }, [loadData]);
-
     return (
         <Switch>
             <Route
                 path="/shop/products/:category?"
                 render={(routeProps) => (
                     <Shop
+                        {...otherProps}
                         {...routeProps}
                         products={filterProducts(
                             products,
@@ -38,7 +44,18 @@ const ShopConnector = ({ products, categories, loadData }) => {
     );
 };
 
-const mapStateToProps = (state) => ({ ...state.shop });
-const mapDispatchToProps = { loadData };
+const mapStateToProps = ({ shop, cart }) => ({
+    products: shop.products,
+    categories: shop.categories,
+    cartItems: cart.cartItems,
+    cartPrice: cart.cartPrice,
+});
+const mapDispatchToProps = {
+    loadData,
+    addToCart,
+    updateCartQuantity,
+    removeFromCart,
+    clearCart,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopConnector);

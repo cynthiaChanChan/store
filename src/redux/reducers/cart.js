@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 const CartReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ActionTypes.CART_ADD:
-            const { p, q } = action.payload;
+            const { product: p, quantity: q } = action.payload;
             let cart = [...state.cart];
             let existing = cart.find((item) => item.product.id === p.id);
             if (existing) {

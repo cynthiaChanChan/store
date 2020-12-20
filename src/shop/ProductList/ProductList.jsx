@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, addToCart }) => {
     if (products === null || products.length === 0) {
         return <h5 className="p-2">No Products</h5>;
     }
@@ -12,7 +12,15 @@ const ProductList = ({ products }) => {
                     ${p.price.toFixed(2)}
                 </span>
             </h4>
-            <div className="card-text bg-white p-1">{p.description}</div>
+            <div className="card-text bg-white p-1">
+                {p.description}
+                <button
+                    className="btn btn-success btn-sm float-right"
+                    onClick={() => addToCart(p)}
+                >
+                    Add To Cart
+                </button>
+            </div>
         </div>
     ));
 };
