@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { loadData } from "../../redux/actions/shop";
 import { DataTypes } from "../../redux/types";
-import { Shop } from "../";
+import { Shop, CartDetail } from "../";
 import {
     addToCart,
     updateCartQuantity,
@@ -39,6 +39,12 @@ const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
                     />
                 )}
             />
+            <Route
+                path="/shop/cart"
+                render={(routeProps) => (
+                    <CartDetail {...otherProps} {...routeProps} />
+                )}
+            />
             <Redirect to="/shop/products" />
         </Switch>
     );
@@ -47,6 +53,7 @@ const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
 const mapStateToProps = ({ shop, cart }) => ({
     products: shop.products,
     categories: shop.categories,
+    cart: cart.cart,
     cartItems: cart.cartItems,
     cartPrice: cart.cartPrice,
 });

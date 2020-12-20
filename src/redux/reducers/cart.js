@@ -49,7 +49,7 @@ const CartReducer = (state = INITIAL_STATE, action) => {
                 cartItems: (state.cartItems -= selection.quantity),
                 cartPrice: (state.cartPrice -=
                     selection.quantity * selection.product.price),
-                cart: cart.filter((item) => item !== selection),
+                cart: state.cart.filter((item) => item !== selection),
             };
         case ActionTypes.CART_CLEAR:
             return INITIAL_STATE;

@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import { CategoryNavigation, ProductList, CartSummary } from "../";
 
 const Shop = ({ categories, products, addToCart, cartItems, cartPrice }) => {
+    const history = useHistory();
+    const handleAddToCart = useCallback(
+        (...args) => {
+            addToCart(...args);
+            history.push("/shop/cart");
+        },
+        [addToCart, history]
+    );
+
     return (
         <div className="container-fluid">
             <div className="row">
@@ -18,7 +28,10 @@ const Shop = ({ categories, products, addToCart, cartItems, cartPrice }) => {
                     />
                 </div>
                 <div className="col-9 p-2">
-                    <ProductList products={products} addToCart={addToCart} />
+                    <ProductList
+                        products={products}
+                        addToCart={handleAddToCart}
+                    />
                 </div>
             </div>
         </div>
