@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { loadData } from "../../redux/actions/shop";
 import { DataTypes } from "../../redux/types";
 import { Shop, CartDetail } from "../";
+import { DataGetter } from "../../common";
+
 import {
     addToCart,
     updateCartQuantity,
@@ -11,32 +13,36 @@ import {
     clearCart,
 } from "../../redux/actions/cart";
 
-const filterProducts = (products = [], category) =>
-    !category || category === "All"
-        ? products
-        : products.filter(
-              (p) => p.category.toLowerCase() === category.toLowerCase()
-          );
+// const filterProducts = (products = [], category) =>
+//     !category || category === "All"
+//         ? products
+//         : products.filter(
+//               (p) => p.category.toLowerCase() === category.toLowerCase()
+//           );
 
 const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
     useEffect(() => {
         loadData(DataTypes.CATEGORIES);
-        loadData(DataTypes.PRODUCTS);
+        //loadData(DataTypes.PRODUCTS);
     }, [loadData]);
     return (
         <Switch>
+            <Redirect
+                from="/shop/products/:category"
+                to="/shop/products/:category/1"
+                exact={true}
+            />
             <Route
-                path="/shop/products/:category?"
+                path="/shop/products/:category/:page"
                 render={(routeProps) => (
-                    <Shop
-                        {...otherProps}
-                        {...routeProps}
-                        products={filterProducts(
-                            products,
-                            routeProps.match.params.category
-                        )}
-                        categories={categories}
-                    />
+                    <DataGetter loadData={loadData} {...routeProps}>
+                        <Shop
+                            {...otherProps}
+                            {...routeProps}
+                            products={products}
+                            categories={categories}
+                        />
+                    </DataGetter>
                 )}
             />
             <Route
@@ -45,7 +51,7 @@ const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
                     <CartDetail {...otherProps} {...routeProps} />
                 )}
             />
-            <Redirect to="/shop/products" />
+            <Redirect to="/shop/products/all/1" />
         </Switch>
     );
 };

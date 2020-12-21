@@ -4,7 +4,7 @@ import { ToggleLink } from "../../common";
 const CategoryNavigation = ({ baseUrl, categories }) => {
     return (
         <>
-            <ToggleLink to={baseUrl} exact={true}>
+            <ToggleLink to={`${baseUrl}/all`} exact={false}>
                 All
             </ToggleLink>
             {categories &&
