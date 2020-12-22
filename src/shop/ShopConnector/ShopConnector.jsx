@@ -20,7 +20,13 @@ import {
 //               (p) => p.category.toLowerCase() === category.toLowerCase()
 //           );
 
-const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
+const ShopConnector = ({
+    shop,
+    products,
+    categories,
+    loadData,
+    ...otherProps
+}) => {
     useEffect(() => {
         loadData(DataTypes.CATEGORIES);
         //loadData(DataTypes.PRODUCTS);
@@ -35,12 +41,12 @@ const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
             <Route
                 path="/shop/products/:category/:page"
                 render={(routeProps) => (
-                    <DataGetter loadData={loadData} {...routeProps}>
+                    <DataGetter loadData={loadData} {...routeProps} {...shop}>
                         <Shop
                             {...otherProps}
                             {...routeProps}
-                            products={products}
-                            categories={categories}
+                            products={shop.products}
+                            categories={shop.categories}
                         />
                     </DataGetter>
                 )}
@@ -57,8 +63,7 @@ const ShopConnector = ({ products, categories, loadData, ...otherProps }) => {
 };
 
 const mapStateToProps = ({ shop, cart }) => ({
-    products: shop.products,
-    categories: shop.categories,
+    shop,
     cart: cart.cart,
     cartItems: cart.cartItems,
     cartPrice: cart.cartPrice,

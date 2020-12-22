@@ -17,3 +17,13 @@ export const loadData = (dataType, params) => (dispatch) => {
         });
     });
 };
+
+export const setPageSize = (newSize) => ({
+    type: ActionTypes.DATA_SET_PAGESIZE,
+    payload: newSize,
+});
+
+export const setSortProperty = (newProp) => ({
+    type: ActionTypes.DATA_SET_SORT_PROPERTY,
+    payload: newProp,
+});

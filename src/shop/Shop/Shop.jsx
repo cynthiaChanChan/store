@@ -1,6 +1,10 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { CategoryNavigation, ProductList, CartSummary } from "../";
+import { PaginationControls } from "../../common";
+import ProductPageConnector from "../ProductPageConnector/ProductPageConnector";
+
+const ProductPages = ProductPageConnector(PaginationControls);
 
 const Shop = ({ categories, products, addToCart, cartItems, cartPrice }) => {
     const history = useHistory();
@@ -28,6 +32,7 @@ const Shop = ({ categories, products, addToCart, cartItems, cartPrice }) => {
                     />
                 </div>
                 <div className="col-9 p-2">
+                    <ProductPages />
                     <ProductList
                         products={products}
                         addToCart={handleAddToCart}
