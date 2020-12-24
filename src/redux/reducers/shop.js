@@ -1,4 +1,4 @@
-import { ActionTypes } from "../types";
+import { ActionTypes, DataTypes } from "../types";
 
 const INITIAL_STATE = {
     products: [],
@@ -23,6 +23,14 @@ const ShopReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 sortKey: action.payload,
             };
+        case ActionTypes.DATA_STORE:
+            if (action.payload.dataType === DataTypes.ORDERS) {
+                return {
+                    ...state,
+                    order: action.payload.data,
+                };
+            }
+            break;
         default:
             return state;
     }
