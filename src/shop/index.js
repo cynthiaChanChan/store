@@ -7,3 +7,4 @@ export { default as CartSummary } from "./CartSummary/CartSummary";
 export { default as CartDetailRows } from "./CartDetailRows/CartDetailRows";
 export { default as CartDetail } from "./CartDetail/CartDetail";
 export { default as ProductPageConnector } from "./ProductPageConnector/ProductPageConnector";
+export { default as Checkout } from "./Checkout/Checkout";

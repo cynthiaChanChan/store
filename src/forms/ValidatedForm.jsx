@@ -9,14 +9,15 @@ const ValidatedForm = ({
     cancelText,
     cancelCallback,
     submitText,
+    submitCallback,
 }) => {
     const [validationErrors, setValidationErrors] = useState({});
-    const formElements = {};
+    const [formElements, setFormElements] = useState({});
 
     const registerRef = useCallback(
         (element) => {
             if (element !== null) {
-                formElements[element.name] = element;
+                setFormElements({ ...formElements, [element.name]: element });
             }
         },
         [formElements]
@@ -30,7 +31,17 @@ const ValidatedForm = ({
             }
         });
         setValidationErrors(errors);
-    }, []);
+
+        if (Object.keys(errors).length === 0) {
+            //Get name and value to make a new object
+            const data = Object.assign(
+                ...Object.entries(formElements).map((e) => ({
+                    [e[0]]: e[1].value,
+                }))
+            );
+            submitCallback(data);
+        }
+    }, [formElements, submitCallback]);
 
     const renderElement = useCallback(
         (modelItem) => {
@@ -62,7 +73,7 @@ const ValidatedForm = ({
                 >
                     {cancelText || "Cancel"}
                 </button>
-                <button className="btn btn-primary m-1">
+                <button className="btn btn-primary m-1" onClick={handelSubmit}>
                     {submitText || "Submit"}
                 </button>
             </div>

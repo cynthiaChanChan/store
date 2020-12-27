@@ -1,3 +1,13 @@
-import React from "react";
+const ValidationMessages = (elem) => {
+    const messages = [];
+    if (elem.validity.valueMissing) {
+        messages.push("Value required");
+    }
+    if (elem.validity.typeMismatch) {
+        messages.push(`Invalid ${elem.type}`);
+    }
 
-const ValidationMessages = () => {};
+    return messages;
+};
+
+export default ValidationMessages;
