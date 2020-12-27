@@ -8,3 +8,4 @@ export { default as CartDetailRows } from "./CartDetailRows/CartDetailRows";
 export { default as CartDetail } from "./CartDetail/CartDetail";
 export { default as ProductPageConnector } from "./ProductPageConnector/ProductPageConnector";
 export { default as Checkout } from "./Checkout/Checkout";
+export { default as Thanks } from "./Thanks/Thanks";

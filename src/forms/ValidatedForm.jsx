@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { ValidationError, ValidationMessages } from "./";
 
 const { GetMessages } = ValidationMessages;
@@ -12,19 +12,17 @@ const ValidatedForm = ({
     submitCallback,
 }) => {
     const [validationErrors, setValidationErrors] = useState({});
-    const [formElements, setFormElements] = useState({});
+    const formElements = {};
 
-    const registerRef = useCallback(
-        (element) => {
-            if (element !== null) {
-                setFormElements({ ...formElements, [element.name]: element });
-            }
-        },
-        [formElements]
-    );
+    const registerRef = (element) => {
+        if (element !== null) {
+            formElements[element.name] = element;
+        }
+    };
 
-    const handelSubmit = useCallback(() => {
+    const handelSubmit = () => {
         const errors = {};
+        console.log(formElements);
         Object.values(formElements).forEach((elem) => {
             if (!elem.checkValidity()) {
                 errors[elem.name] = GetMessages(elem);
@@ -41,27 +39,24 @@ const ValidatedForm = ({
             );
             submitCallback(data);
         }
-    }, [formElements, submitCallback]);
+    };
 
-    const renderElement = useCallback(
-        (modelItem) => {
-            const name = modelItem.name || modelItem.label.toLowerCase();
-            return (
-                <div className="form-group" key={modelItem.label}>
-                    <label>{modelItem.label}</label>
-                    <ValidationError errors={validationErrors[name]} />
-                    <input
-                        name={name}
-                        ref={registerRef}
-                        className="for-contrl"
-                        {...defaultAttrs}
-                        {...modelItem.attrs}
-                    />
-                </div>
-            );
-        },
-        [defaultAttrs, validationErrors, registerRef]
-    );
+    const renderElement = (modelItem) => {
+        const name = modelItem.name || modelItem.label.toLowerCase();
+        return (
+            <div className="form-group" key={modelItem.label}>
+                <label>{modelItem.label}</label>
+                <ValidationError errors={validationErrors[name]} />
+                <input
+                    name={name}
+                    ref={registerRef}
+                    className="form-control"
+                    {...defaultAttrs}
+                    {...modelItem.attrs}
+                />
+            </div>
+        );
+    };
 
     return (
         <>

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadData } from "../../redux/actions/shop";
+import { loadData, placeOrder } from "../../redux/actions/shop";
 import { DataTypes } from "../../redux/types";
-import { Shop, CartDetail } from "../";
+import { Shop, CartDetail, Checkout, Thanks } from "../";
 import { DataGetter } from "../../common";
 
 import {
@@ -25,6 +25,8 @@ const ShopConnector = ({
     products,
     categories,
     loadData,
+    placeOrder,
+    clearCart,
     ...otherProps
 }) => {
     useEffect(() => {
@@ -57,6 +59,21 @@ const ShopConnector = ({
                     <CartDetail {...otherProps} {...routeProps} />
                 )}
             />
+            <Route
+                path="/shop/checkout"
+                render={(routeProps) => (
+                    <Checkout
+                        {...routeProps}
+                        cart={otherProps.cart}
+                        placeOrder={placeOrder}
+                        clearCart={clearCart}
+                    />
+                )}
+            />
+            <Route
+                path="/shop/thanks"
+                render={() => <Thanks order={shop.order} />}
+            />
             <Redirect to="/shop/products/all/1" />
         </Switch>
     );
@@ -74,6 +91,7 @@ const mapDispatchToProps = {
     updateCartQuantity,
     removeFromCart,
     clearCart,
+    placeOrder,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopConnector);

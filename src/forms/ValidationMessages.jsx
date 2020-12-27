@@ -1,4 +1,4 @@
-const ValidationMessages = (elem) => {
+const GetMessages = (elem) => {
     const messages = [];
     if (elem.validity.valueMissing) {
         messages.push("Value required");
@@ -9,5 +9,7 @@ const ValidationMessages = (elem) => {
 
     return messages;
 };
+
+const ValidationMessages = { GetMessages };
 
 export default ValidationMessages;

@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { ValidatedForm } from "../../forms";
 
-const Checkout = ({ cart, placOrder, clearCart, history }) => {
+const Checkout = ({ cart, placeOrder, clearCart, history }) => {
     const defaultAttrs = { type: "text", required: true };
     const formModel = [
         { label: "Name" },
@@ -21,11 +21,11 @@ const Checkout = ({ cart, placOrder, clearCart, history }) => {
                     product_id: item.product.id,
                 })),
             };
-            placOrder(order);
+            placeOrder(order);
             clearCart();
             history.push("/shop/thanks");
         },
-        [cart, placOrder, clearCart, history]
+        [cart, placeOrder, clearCart, history]
     );
 
     const handleCancel = useCallback(() => {
