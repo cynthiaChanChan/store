@@ -39,7 +39,7 @@ const PaginationControls = ({
             </div>
             <div className="form-inline justify-content-center">
                 <select
-                    className="form-control"
+                    className="form-control m-2"
                     onChange={handlePageSizeChange}
                     value={pageSize || pageSizes[0]}
                 >
@@ -50,7 +50,7 @@ const PaginationControls = ({
                     ))}
                 </select>
                 <select
-                    className="form-control"
+                    className="form-control m-2"
                     onChange={handleSortPropertyChange}
                     value={sortKey || sortKeys[0]}
                 >

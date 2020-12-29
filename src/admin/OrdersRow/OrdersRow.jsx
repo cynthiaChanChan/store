@@ -30,7 +30,7 @@ const OrdersRow = ({ order, toggleShipped }) => {
             <td className="text-right">${calcTotal(order.products)}</td>
             <td className="text-center">
                 <button
-                    className="btn btn-sm btn-block bg-muted"
+                    className="btn btn-sm btn-block bg-transparent"
                     onClick={toggleShipped}
                 >
                     {getShipping(order)}

@@ -3,6 +3,7 @@ import { OrdersRow } from "../";
 import { PaginationControls } from "../../common";
 
 const OrdersTable = (props) => {
+    console.log(props);
     return (
         <div>
             <h4 className="bg-info text-white text-center p-2">
