@@ -24,6 +24,7 @@ for (let i = 1; i < 103; i++) {
 
     var order = {
         id: i,
+        name: `${fname} ${sname}`,
         email: faker.internet.email(fname, sname),
         address: faker.address.streetAddress(),
         city: faker.address.city(),

@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { ShopConnector } from "./shop";
 import { store, persistor } from "./redux/store";
+import { Admin } from "./admin";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Router>
                     <Switch>
                         <Route path="/shop" component={ShopConnector} />
+                        <Route path="/admin" component={Admin} />
                         <Redirect to="/shop" />
                     </Switch>
                 </Router>
