@@ -22,7 +22,6 @@ const ValidatedForm = ({
 
     const handelSubmit = () => {
         const errors = {};
-        console.log(formElements);
         Object.values(formElements).forEach((elem) => {
             if (!elem.checkValidity()) {
                 errors[elem.name] = GetMessages(elem);

@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { ProductsTable } from "./";
+import ProductsTable from "./ProductsTable/ProductsTable";
 import { productsList } from "./clientQueries";
 import { deleteProduct } from "./clientMutations";
 

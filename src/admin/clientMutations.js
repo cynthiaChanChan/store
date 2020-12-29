@@ -15,7 +15,7 @@ export const storeProduct = gql`
             id
             name
             category
-            desription
+            description
             price
         }
     }

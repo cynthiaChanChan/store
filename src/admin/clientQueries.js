@@ -39,7 +39,7 @@ export const product = gql`
         product(id: $id) {
             id
             name
-            sescription
+            description
             category
             price
         }
