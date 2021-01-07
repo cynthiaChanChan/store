@@ -10,18 +10,21 @@ import {
 import { ShopConnector } from "./shop";
 import { store, persistor } from "./redux/store";
 import { Admin } from "./admin";
+import { AuthProviderImpl } from "./auth/AuthProviderImpl";
 
 function App() {
     return (
         <Provider store={store}>
             <PersistGate persistor={persistor}>
-                <Router>
-                    <Switch>
-                        <Route path="/shop" component={ShopConnector} />
-                        <Route path="/admin" component={Admin} />
-                        <Redirect to="/shop" />
-                    </Switch>
-                </Router>
+                <AuthProviderImpl>
+                    <Router>
+                        <Switch>
+                            <Route path="/shop" component={ShopConnector} />
+                            <Route path="/admin" component={Admin} />
+                            <Redirect to="/shop" />
+                        </Switch>
+                    </Router>
+                </AuthProviderImpl>
             </PersistGate>
         </Provider>
     );

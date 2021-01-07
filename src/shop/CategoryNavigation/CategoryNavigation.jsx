@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ToggleLink } from "../../common";
 
 const CategoryNavigation = ({ baseUrl, categories }) => {
@@ -16,6 +17,12 @@ const CategoryNavigation = ({ baseUrl, categories }) => {
                         {cat}
                     </ToggleLink>
                 ))}
+            <Link
+                className="btn btn-block btn-secondary fixed-bottom m-2 col-3"
+                to="/admin"
+            >
+                Administration
+            </Link>
         </>
     );
 };
