@@ -20,7 +20,7 @@ const Shop = ({ categories, products, addToCart, cartItems, cartPrice }) => {
         <div className="container-fluid">
             <div className="row">
                 <div className="col bg-dark text-white">
-                    <div className="navbar-brand">SPORTS STORE</div>
+                    <div className="navbar-brand">STORE</div>
                     <CartSummary cartItems={cartItems} cartPrice={cartPrice} />
                 </div>
             </div>

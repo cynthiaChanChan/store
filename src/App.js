@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import {
@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 import { ShopConnector } from "./shop";
 import { store, persistor } from "./redux/store";
-import { Admin } from "./admin";
 import { AuthProviderImpl } from "./auth/AuthProviderImpl";
+const Admin = lazy(() => import("./admin/Admin/Admin"));
 
 function App() {
     return (
@@ -20,7 +20,14 @@ function App() {
                     <Router>
                         <Switch>
                             <Route path="/shop" component={ShopConnector} />
-                            <Route path="/admin" component={Admin} />
+                            <Route
+                                path="/admin"
+                                render={(routeProps) => (
+                                    <Suspense fallback={<h3>Loading...</h3>}>
+                                        <Admin {...routeProps} />
+                                    </Suspense>
+                                )}
+                            />
                             <Redirect to="/shop" />
                         </Switch>
                     </Router>
